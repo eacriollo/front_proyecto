@@ -1,0 +1,41 @@
+GET http://127.0.0.1:8000/api/equipo
+Accept: application/json
+Content-Type: application/json
+
+###
+
+
+POST http://127.0.0.1:8000/api/equipo
+Accept: application/json
+Content-Type: application/json
+
+{
+    "serie": "4546484456",
+    "producto_id": "3",
+    "estado_id": "1",
+    "orden_id": "2"
+}
+
+### mostrar
+GET http://127.0.0.1:8000/api/actividad/4
+Accept: application/json
+Content-Type: application/json
+
+
+### actualizar
+
+
+PUT  http://127.0.0.1:8000/api/actividad/4
+Accept: application/json
+Content-Type: application/json
+
+{
+    "tipo": "Traslado Normal"
+}
+
+###
+
+DELETE   http://127.0.0.1:8000/api/actividad/4
+Accept: application/json
+Content-Type: application/json
+

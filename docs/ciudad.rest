@@ -1,0 +1,21 @@
+POST http://127.0.0.1:8000/api/producto
+Accept: application/json
+Content-Type: application/json
+
+{
+    "nombre": "a",
+    "inventario": "a",
+    "codigo": "1",
+    "accesorio": "a"
+}
+
+### actualizar
+
+
+PUT  http://127.0.0.1:8000/api/ciudad/2
+Accept: application/json
+Content-Type: application/json
+
+{
+    "nombre": "Moro"
+}

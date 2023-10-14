@@ -1,0 +1,23 @@
+POST http://127.0.0.1:8000/api/v1/auth/registrar
+Accept: application/json
+Content-Type: application/json
+
+
+{
+    "name": "andres1",
+    "email": "andres@info.com",
+    "password": "andres2013",
+    "c_password": "andres2013"
+}
+
+
+### ingreso al sistema
+
+POST http://127.0.0.1:8000/api/v1/auth/login
+Accept: application/json
+Content-Type: application/json
+
+{
+    "email": "andres@info.com",
+    "password": "andres2013"
+}
