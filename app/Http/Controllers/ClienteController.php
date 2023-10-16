@@ -11,25 +11,23 @@ class ClienteController extends Controller
      * Display a listing of the resource.
      */
     public function index(Request $request)
-    {
+    {   //->with("colocar con que tabla se quiere extraer los datos colocar tambien en la respuesta ")
         //
-         //
-         $buscador = isset($request->q)?$request->q : '';
+        //
+        $buscar = isset($request->q) ? $request->q : '';
+        $limit = isset($request->limit) ? $request->limit : 10;
 
-         if ($buscador) {
-             # code...
-             $productos = Abonado::ordeBy('id', 'desc')
-                                  ->where('nombre', 'like', '%'.$buscador.'%')
-                                  //->with("colocar con que tabla se quiere extraer los datos colocar tambien en la respuesta ")
-                                  ->paginate(10);
-         } else {
-             $productos = Abonado::orderBy('id', 'desc')
-                                 ->paginate(10);
-         }
-         
-         return response()->json($productos, 200);
-         
-     
+        if ($buscar) {
+            # code...
+            $abonado = Abonado::orderBy('id', 'desc')
+                                ->where('nombre', 'like', '%'.$buscar.'%')
+                                
+                                ->paginate($limit);
+        } else {
+            $abonado = Abonado::orderBy('id', 'desc')
+                ->paginate($limit);
+        }
+        return response()->json($abonado, 200);
     }
 
     /**
@@ -48,14 +46,14 @@ class ClienteController extends Controller
 
         //guardar
 
-        $abonado =new Abonado();
+        $abonado = new Abonado();
         $abonado->codigo = $request->codigo;
         $abonado->plan = $request->plan;
         $abonado->nombre = $request->nombre;
         $abonado->save();
-        
+
         //respuesta
-        return response()->json(["mensaje" => "Abonado guardado"],201);
+        return response()->json(["mensaje" => "Abonado guardado"], 201);
     }
 
     /**
@@ -79,7 +77,7 @@ class ClienteController extends Controller
         $request->validate([
 
             "codigo" => "required",
-            "plan" => "required|unique:abonados",
+            "plan" => "required|unique:abonados,plan,$id",
             "nombre" => "required"
         ]);
 
@@ -90,8 +88,7 @@ class ClienteController extends Controller
         $abonado->nombre = $request->nombre;
         $abonado->update();
 
-        return response()->json(["mensaje" => "Abonado actualizado"],201);
-
+        return response()->json(["mensaje" => "Abonado actualizado"], 201);
     }
 
     /**
@@ -104,7 +101,6 @@ class ClienteController extends Controller
         $abonado = Abonado::findOrfail($id);
         $abonado->delete();
 
-        return response()->json(["mensaje" => "Abonado eliminado"],200);
-
+        return response()->json(["mensaje" => "Abonado eliminado"], 200);
     }
 }
