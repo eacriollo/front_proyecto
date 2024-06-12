@@ -13,4 +13,9 @@ class Abonado extends Model
         return $this->hasMany(Orden::class);
     }
 
+
+    public function equipos(){
+        return $this->hasMany(Orden::class);
+    }
+
 }

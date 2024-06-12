@@ -1,0 +1,4 @@
+###
+GET http://127.0.0.1:8000/api/graficaCiudad?q=2024&mes=05
+Accept: application/json
+Content-Type: application/json

@@ -1,0 +1,11 @@
+POST http://127.0.0.1:8000/api/producto
+Accept: application/json
+Content-Type: application/json
+
+{
+    "nombre": "ONT Nokia",
+    "inventario": "iescue",
+    "codigo": 78945,
+    "accesorio": "cargado"
+  
+}

@@ -8,6 +8,7 @@ use App\Http\Controllers\EstadoController;
 use App\Http\Controllers\OrdenesController;
 use App\Http\Controllers\PersonaController;
 use App\Http\Controllers\PrecioController;
+use App\Http\Controllers\GraficasController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\SeriesController;
 use Illuminate\Http\Request;
@@ -35,6 +36,7 @@ Route::prefix('/v1/auth')->group(function () {
 
 Route::apiResource("persona", PersonaController::class);
 
+
 Route::apiResource("actividad", ActividadController::class);
 
 Route::apiResource("ciudad", CiudadController::class);
@@ -48,4 +50,8 @@ Route::apiResource("orden", OrdenesController::class);
 Route::apiResource("producto", ProductoController::class);
 
 Route::apiResource("equipo", SeriesController::class);
+
 Route::apiResource("abonado", ClienteController::class);
+
+Route::get("/graficas", [GraficasController::class, "ordenes"]);
+Route::get("/graficaCiudad", [GraficasController::class, "ciudad"]);

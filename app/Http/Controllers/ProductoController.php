@@ -7,9 +7,7 @@ use Illuminate\Http\Request;
 
 class ProductoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+   
     public function index()
     {
         //
@@ -38,7 +36,6 @@ class ProductoController extends Controller
         $producto->save();
 
         return response()->json(["mensaje" => "producto guardado"], 201);
-
     }
 
     /**
@@ -47,7 +44,6 @@ class ProductoController extends Controller
     public function show(string $id)
     {
         //
-
         $producto = Producto::find($id);
         return response()->json($producto, 200);
 
@@ -58,20 +54,16 @@ class ProductoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
           // validar actividad
-
           $request->validate([
             "nombre"=> "required|unique:productos,nombre,$id"
         ]);
-
         $producto = Producto::find($id);
         $producto->nombre = $request->nombre;
         $producto->inventario = $request->inventario;
         $producto->codigo = $request->codigo;
         $producto->accesorio = $request->accesorio;
         $producto->update();
-
         return response()->json(["mensaje" => "producto modificado"], 200);
     }
 
@@ -80,7 +72,6 @@ class ProductoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
         $producto = Producto::find($id);
         $producto->delete();
         return response()->json(["mensaje" => "producto eliminado"], 200);

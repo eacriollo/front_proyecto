@@ -7,21 +7,16 @@ use Illuminate\Http\Request;
 
 class ClienteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index(Request $request)
     {   //->with("colocar con que tabla se quiere extraer los datos colocar tambien en la respuesta ")
         //
-        //
         $buscar = isset($request->q) ? $request->q : '';
         $limit = isset($request->limit) ? $request->limit : 10;
-
         if ($buscar) {
             # code...
             $abonado = Abonado::orderBy('id', 'desc')
                                 ->where('nombre', 'like', '%'.$buscar.'%')
-                                
+                                ->orWhere('plan', $buscar)
                                 ->paginate($limit);
         } else {
             $abonado = Abonado::orderBy('id', 'desc')
@@ -43,7 +38,6 @@ class ClienteController extends Controller
             "plan" => "required|unique:abonados",
             "nombre" => "required"
         ]);
-
         //guardar
 
         $abonado = new Abonado();
@@ -51,7 +45,6 @@ class ClienteController extends Controller
         $abonado->plan = $request->plan;
         $abonado->nombre = $request->nombre;
         $abonado->save();
-
         //respuesta
         return response()->json(["mensaje" => "Abonado guardado"], 201);
     }
@@ -61,8 +54,7 @@ class ClienteController extends Controller
      */
     public function show(string $id)
     {
-        //
-
+        
         $abonado = Abonado::findOrfail($id);
         return response()->json($abonado, 200);
     }

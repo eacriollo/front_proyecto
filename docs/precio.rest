@@ -1,0 +1,8 @@
+POST http://127.0.0.1:8000/api/precio
+Accept: application/json
+Content-Type: application/json
+
+{
+    "precio": 80
+  
+}

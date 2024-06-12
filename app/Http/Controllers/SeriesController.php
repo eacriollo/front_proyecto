@@ -3,31 +3,30 @@
 namespace App\Http\Controllers;
 
 use App\Models\Equipo;
-use App\Models\Producto;
+
 use Illuminate\Http\Request;
 
 class SeriesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index(Request $request)
     {
-        //
-        $buscador = isset($request->q)?$request->q : '';
-
-        if ($buscador) {
+        //Variables que se recibe por url
+        $buscar = isset($request->q) ? $request->q : '';
+        $limit = isset($request->limit) ? $request->limit : 10;
+        // logica si en la url viene un dato
+        if ($buscar) {
             # code...
-            $productos = Equipo::ordeBy('id', 'desc')
-                                 ->where('serie', 'like', '%'.$buscador.'%')
-                                 ->paginate(10);
-        } else {
             $productos = Equipo::orderBy('id', 'desc')
-                                ->paginate(10);
+                                ->where('serie', 'like', '%' .$buscar. '%')
+                                ->with("Persona", "Producto", "Abonado", "Estado")
+                                ->paginate($limit);
+        } else {
+            $productos = Equipo::orderBy('id', 'desc')->with("Persona", "Producto", "Abonado", "Estado")
+                ->paginate($limit);
         }
-        
+
         return response()->json($productos, 200);
-        
     }
 
     /**
@@ -41,20 +40,19 @@ class SeriesController extends Controller
             "serie" => "required|unique:equipos",
             "producto_id" => "required",
             "estado_id" => "required",
-            "orden_id" => "required"
+            "persona_id" => "required"
         ]);
-
         //guardar
-
-        $equipo =new Equipo();
+        $equipo = new Equipo();
         $equipo->serie = $request->serie;
-        $equipo->producto_id = $request->producto_id ;
+        $equipo->producto_id = $request->producto_id;
         $equipo->estado_id = $request->estado_id;
-        $equipo->orden_id = $request->orden_id;
+        $equipo->persona_id = $request->persona_id;
+        $equipo->abonado_id = $request->abonado_id;
         $equipo->save();
-        
+
         //respuesta
-        return response()->json(["mensaje" => "Equipo guardado"],201);
+        return response()->json(["mensaje" => "Equipo guardado"], 201);
     }
 
     /**
@@ -62,7 +60,8 @@ class SeriesController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $equipo = Equipo::find($id);
+        return response()->json($equipo, 200);
     }
 
     /**
@@ -70,7 +69,23 @@ class SeriesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        //validar
+        $request->validate([
+            "serie" => "required|unique:equipos,serie,$id",
+            "producto_id" => "required",
+            "estado_id" => "required",
+            "persona_id" => "required"
+        ]);
+
+        $equipo = Equipo::find($id);
+        $equipo->serie = $request->serie;
+        $equipo->producto_id = $request->producto_id;
+        $equipo->estado_id = $request->estado_id;
+        $equipo->persona_id = $request->persona_id;
+        $equipo->abonado_id = $request->abonado_id;
+        $equipo->update();
+
+        return response()->json(["mensaje" => "esquipo actualizado"], 200);
     }
 
     /**
@@ -79,5 +94,9 @@ class SeriesController extends Controller
     public function destroy(string $id)
     {
         //
+        $equipo = Equipo::find($id);
+        $equipo->delete();
+
+        return response()->json(["mensaje" => "Equipo eliminado"], 200);
     }
 }

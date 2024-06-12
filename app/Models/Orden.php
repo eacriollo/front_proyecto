@@ -21,11 +21,6 @@ class Orden extends Model
         return $this->belongsTo(Ciudad::class);
     }
 
-    
-    public function equipos(){
-        return $this->hasMany(Equipo::class);
-    }
-
     public function persona(){
         return $this->belongsTo(Persona::class);
     }
@@ -37,10 +32,5 @@ class Orden extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
-
-    
-
-
-
 
 }

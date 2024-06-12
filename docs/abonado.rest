@@ -1,17 +1,29 @@
-### guardar
 
-POST http://127.0.0.1:8000/api/actividad
+### guardar
+POST http://127.0.0.1:8000/api/abonado
 Accept: application/json
 Content-Type: application/json
 
 {
-    "tipo": "Instalacion por ductos"
+    "codigo": "4545",
+    "plan": "7544857",
+    "nombre": "Eduardo Andres Criollo Cabrera"
 }
 
 
 
-### buscar
-GET http://127.0.0.1:8000/api/abonado?q=xavie
+
+
+
+
+
+
+
+
+
+
+###
+GET http://127.0.0.1:8000/api/abonado?q=CRIOLL
 Accept: application/json
 Content-Type: application/json
 

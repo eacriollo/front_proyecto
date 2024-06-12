@@ -1,0 +1,22 @@
+POST http://127.0.0.1:8000/api/orden
+Accept: application/json
+Content-Type: application/json
+
+{
+    "fecha": "2024/05/24",
+    "acta": "4564449",
+    "ticket": "NP-7844546",
+    "manga": "mcue4562",
+    "abonado_id": "1",
+    "user_id": "1",
+    "persona_id": "1",
+    "precio_id": "1",
+    "actividad_id": "2",
+    "ciudad_id": "1"
+}
+
+
+###
+GET http://127.0.0.1:8000/api/orden?q=5417
+Accept: application/json
+Content-Type: application/json

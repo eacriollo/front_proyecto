@@ -1,0 +1,9 @@
+POST http://127.0.0.1:8000/api/persona
+Accept: application/json
+Content-Type: application/json
+
+{
+    "nombre": "Francisco Alvarez",
+    "ci": "0105040807"
+}
+

@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Models\Persona;
 
@@ -14,17 +12,13 @@ class PersonaController extends Controller
     {
         //
         $persona = Persona::orderBy('id', 'desc')-> get();
-
         return response()->json($persona, 200);
     }
-
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
-
         // validar
 
         $request->validate([
@@ -58,7 +52,6 @@ class PersonaController extends Controller
     {
         //
          // validar precio
-
          $request->validate([
             
             "nombre"=> "required|unique:personas,nombre,$id",

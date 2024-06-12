@@ -13,12 +13,16 @@ class Equipo extends Model
         return $this->belongsTo(Producto::class);
     }
 
-    public function estado(){
-        return $this->belongsTo(Estado::class);
+    public function abonado(){
+        return $this->belongsTo(Abonado::class);
     }
 
-    public function orden(){
-        return $this->hasMany(Orden::class);
+    public function persona(){
+        return $this->belongsTo(Persona::class);
+    }
+
+    public function estado(){
+        return $this->belongsTo(Estado::class);
     }
 
     

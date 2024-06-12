@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\User;
@@ -16,20 +15,14 @@ class AuthController extends Controller
             "email" => "required|email",
             "password" => "required"
         ]);
-
         // verificar que se encuentra autenticado
-
         if(!Auth::attempt($credenciales)){
             return response()->json(["mensaje" => "usuaro no se encuentra registrado"], 401);
         }
-
         // generar token para ingreso a la aplicacion
-
         $usuario = Auth::user();
         $token = $usuario->createToken("token personal")->plainTextToken;
-
         // respuesta para el acceso al sistema ya generado el token
-
         return response()->json([
             "access_token" => $token,
             "type_token" => "Bearer",

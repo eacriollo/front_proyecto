@@ -44,9 +44,7 @@ class PrecioController extends Controller
     public function show(string $id)
     {
         //
-
         $precio = Precio::find($id);
-
         return response()->json($precio, 200);
     }
 
@@ -55,14 +53,10 @@ class PrecioController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
-
          // validar precio
-
          $request->validate([
             "precio"=> "required|unique:precios,precio,$id"
         ]);
-
         $precios = Precio::find($id);
         $precios->precio = $request->precio;
         $precios->update();
@@ -75,8 +69,7 @@ class PrecioController extends Controller
      */
     public function destroy(string $id)
     {
-        //
-        
+        //    
         $precios = Precio::find($id);
         $precios-> delete(); 
         return response()->json(["mensaje" => "se elimino item"], 200); 

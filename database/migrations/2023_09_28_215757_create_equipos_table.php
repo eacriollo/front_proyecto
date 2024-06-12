@@ -29,10 +29,16 @@ return new class extends Migration
             $table->foreign("estado_id")->references("id")->on("estados");
             //hasta
 
-            // establecer la relacion 1:N con la tabla ordens
+            // establecer la relacion 1:N con la tabla personas
             //desde
-            $table->bigInteger("orden_id")->unsigned();
-            $table->foreign("orden_id")->references("id")->on("ordens");
+            $table->bigInteger("persona_id")->unsigned();
+            $table->foreign("persona_id")->references("id")->on("personas");
+            //hasta
+
+            // establecer la relacion 1:N con la tabla abonados
+            //desde
+            $table->bigInteger("abonado_id")->unsigned();
+            $table->foreign("abonado_id")->references("id")->on("abonados");
             //hasta
 
             $table->timestamps();

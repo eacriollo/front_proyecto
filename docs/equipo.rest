@@ -1,0 +1,31 @@
+
+
+POST http://127.0.0.1:8000/api/equipo 
+Accept: application/json
+Content-Type: application/json
+
+{
+    "serie": "44645611",
+    "producto_id": "1",
+    "estado_id": "1",
+    "persona_id": "1",
+    "abonado_id": "1"
+}
+
+###
+GET http://127.0.0.1:8000/api/equipo?q=54
+Accept: application/json
+Content-Type: application/json
+
+
+
+
+
+
+
+
+
+### mostrar
+GET http://127.0.0.1:8000/api/equipo?q=7777
+Accept: application/json
+Content-Type: application/json

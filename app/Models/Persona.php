@@ -12,4 +12,9 @@ class Persona extends Model
     public function ordenes(){
         return $this->hasMany(Orden::class);
     }
+
+    public function equipos(){
+        return $this->hasMany(Orden::class);
+    }
+
 }

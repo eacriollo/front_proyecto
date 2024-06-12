@@ -4,11 +4,23 @@ Content-Type: application/json
 
 
 {
-    "name": "andres1",
-    "email": "andres@info.com",
-    "password": "andres2013",
-    "c_password": "andres2013"
+    "name": "Andres Criollo",
+    "email": "acriollo@info.com",
+    "password": "abcd1234",
+    "c_password": "abcd1234"
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ### ingreso al sistema
