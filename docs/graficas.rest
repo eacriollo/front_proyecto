@@ -2,3 +2,18 @@
 GET http://127.0.0.1:8000/api/graficaCiudad?q=2024&mes=05
 Accept: application/json
 Content-Type: application/json
+
+###tecnicos
+GET http://127.0.0.1:8000/api/graficaTecnico?q=2024&mes=05&persona=1
+Accept: application/json
+Content-Type: application/json
+
+###ordenes
+GET http://127.0.0.1:8000/api/reporteOrdenes?q=2024-05-01&ffin=2024-05-15
+Accept: application/json
+Content-Type: application/json
+
+###ordenes
+GET http://127.0.0.1:8000/api/reporteEquipos?q=2024-05-16&ffin=2024-05-17
+Accept: application/json
+Content-Type: application/json

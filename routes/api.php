@@ -55,3 +55,6 @@ Route::apiResource("abonado", ClienteController::class);
 
 Route::get("/graficas", [GraficasController::class, "ordenes"]);
 Route::get("/graficaCiudad", [GraficasController::class, "ciudad"]);
+Route::get("/graficaTecnico", [GraficasController::class, "tecnico"]);
+Route::get("/reporteOrdenes", [GraficasController::class, "ordenesPorFecha"]);
+Route::get("/reporteEquipos", [GraficasController::class, "equiposPorFecha"]);
